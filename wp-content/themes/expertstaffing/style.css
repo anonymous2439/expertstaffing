@@ -1,0 +1,325 @@
+/*
+ Theme Name:   customtheme
+ Text Domain:  customtheme
+ Version:      1.0.0
+ Description:  Custom theme
+ Author:       Neil Axinto
+ Author URI:   http://axintoneil.com
+ Tags:         light, dark, two-columns, responsive-layout, accessibility-ready
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-BoldItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Black.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-BlackItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Bold.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-ExtraBoldItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-ExtraBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-ExtraBold.woff2') format('woff2'),
+      url('assets/fonts/Raleway-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-ExtraLight.woff2') format('woff2'),
+      url('assets/fonts/Raleway-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-ExtraLightItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-ExtraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-LightItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Light.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Italic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-MediumItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Medium.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-SemiBold.woff2') format('woff2'),
+      url('assets/fonts/Raleway-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Regular.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-SemiBoldItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-Thin.woff2') format('woff2'),
+      url('assets/fonts/Raleway-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('assets/fonts/Raleway-ThinItalic.woff2') format('woff2'),
+      url('assets/fonts/Raleway-ThinItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root{
+  --page-margin: 16px;
+}
+
+*, *:before, *:after { box-sizing: border-box; -moz-box-sizing: border-box; image-rendering: -webkit-optimize-contrast;}
+
+ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline; -webkit-text-size-adjust: 100%;}
+
+ /* HTML5 display-role reset for older browsers */
+ 
+ article, aside, details, figcaption, figure,
+ footer, header, hgroup, menu, nav, section {display: block;}
+ ul {list-style: none;}
+ blockquote, q {quotes: none;}
+ blockquote:before, blockquote:after,
+ q:before, q:after {content: '';content: none;}
+ table {border-collapse: collapse;border-spacing: 0;}
+ button, html input[type=button], input[type=reset], input[type=submit] { -webkit-appearance: button; cursor: pointer; }
+ input, textarea, select{-webkit-appearance: none;}
+ mark {background-color: transparent;}
+ /* end reset */
+ 
+ /*preset*/
+ html{overflow-x: hidden;}
+ body{line-height: 1;font-size: 20px; line-height: 22px; font-family: raleway; color: #000;position:relative; overflow-x: hidden;}
+ body.active{overflow: hidden;width:100%;height:100%;position:fixed!important;}
+ a{ text-decoration:none; -webkit-transition: all .3s linear;transition: all .3s linear;}
+ img{max-width: 100%; vertical-align: top; image-rendering: -webkit-optimize-contrast;}
+ textarea { resize:vertical; }
+ iframe{ border: none; width: 100%;}
+ ul, h1, h2, h3, h4{ margin:0; padding:0; list-style:none; }
+ strong , b{ font-weight: bold;}
+ em, i{font-style: italic;}
+ input[type="submit"]{cursor: pointer;}
+ a[href^="tel:"]{color: inherit!important; text-decoration: none;}
+ #wpadminbar {position: fixed !important;}
+ .clearfix:before, .clearfix:after { content:""; display: table; clear: both; }
+ .clearfix {clear: both; overflow: hidden;}
+ .comp{color:var(--color2); font-weight:bold;}
+ .comingsoon{color:red; font-style:italic; font-weight:bold;}
+ .col2{-webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-gap: 10px; -moz-column-gap: 10px;  column-gap: 10px;}
+ .col3{-webkit-column-count: 3; -moz-column-count: 3; column-count: 3; -webkit-column-gap: 10px; -moz-column-gap: 10px;  column-gap: 10px;}
+ .col2 li, .col3 li{display: inline-block; width: 100%;}
+ .main_phone {font-weight: bold;}
+ .back_top{display:none;position: fixed; z-index:999; bottom: 73px;right: 16px;box-shadow: 0 0 10px 1px #1a1a1a4a;cursor:pointer;width: 30px;height: 30px;content: "";background: #FFDB19;border-radius: 100%;}
+ .back_top:hover{opacity:.7}
+ .back_top::before { content: ""; background: url(assets/images/back_top.png); width: 18px;height: 13px;position: absolute;background-repeat: no-repeat;background-size: contain;display: flex;justify-content: center;align-items: center;top: 8px;left: -2px;right: 0;margin: 0 auto;} 
+
+.wrapper { max-width: 1480px; position: relative; margin: 0 auto; } 
+
+.slick-dots button { font-size: 0; line-height: 0; display: block; width: 20px; height: 5px; cursor: pointer; color: transparent; border: 0; outline: none; background: #AFAFAF; border-radius: 100px; content: ""; } 
+ .slick-dots { display: flex; column-gap: 7px; justify-content: start; width: 100%;} 
+ .slick-dots .slick-active button { background: #FF1E1E; width: 35px; }
+
+ input[type="text"]:focus, textarea:focus, input[type="email"]:focus { outline: 0 !important; border: 2.66667px solid #FFD700 !important; } 
+
+
+ /* header */
+ header { background: #000000; } 
+ .header_con { position: relative; min-height: 102px;} 
+ .main_logo { position: relative; top: 18px; } 
+
+ .user_functions { position: absolute; right: 0; top: 0; display: flex; bottom: 0; margin: 18px 0; } 
+ .user_functions a { font-family: poppins; font-size: 27px; line-height: 66px; color: #fff; margin: 0 10px; } 
+ .user_functions a:first-of-type { background: #FF1E1E; display: block; border-radius: 10px; width: 165px; text-align: center; } 
+ .user_functions a:first-of-type:hover { opacity: .8; } 
+ .user_functions a:last-of-type:hover { text-decoration: underline; } 
+ 
+ .user_functions form { width: 309px; position: relative; } 
+.user_functions form::before { content: url("assets/images/magnifier.svg");position: absolute;top: 50%;transform: translateY(-50%);left: 31px; } 
+ .user_functions form button { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: none; } 
+ .user_functions form input { width: 100%; height: 100%; border: none; background: #1D1D1D; border-radius: 10px; color: #fff; font-weight: 300; font-size: 27px; padding-left: 94px; } 
+ 
+
+/* banner */
+#banner { background: #00000099; } 
+.bnr_con { min-height: 759px; padding: 200px 0 40px; } 
+.bnr_info { color: #fff; text-align: center; } 
+.bnr_info h1 { margin-bottom: 84px;font-weight: 700; font-size: 64px; line-height: 127%; position: relative; } 
+.bnr_info h1::before { content: ""; background: #FF1E1E; width: 200px; height: 9px; position: absolute; left: 0; right: 0; margin: 0 auto; bottom: -44px; } 
+.bnr_info p { font-size: 36px; line-height: 100%; margin-bottom: 61px;} 
+.bnr_info ul { display: flex; justify-content: center; column-gap: 10px; } 
+
+/* videos */
+#videos { padding: 80px 0; background: #000; } 
+.videos_con { position: relative;} 
+.selected_video {width: calc(100% - 543px); min-height: 525px; background: brown; border-radius: 20px; overflow: hidden;} 
+.video_sidebar { max-width: 518px;position: absolute; right: 0; top: 0; bottom: 0; border-left: 1px solid #fff; padding-left: 23px; color: #fff; width: 100%;} 
+.video_list { position: absolute; height: 422px; overflow: auto; } 
+.video_list section { position: relative; min-height: 118px; margin-bottom: 22px; padding-left: 133px;} 
+.video_list section figure { position: absolute; left: 0; top: 0; width: 118px; height: 118px; } 
+ .video_list section figure img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); } 
+ 
+ .video_list section h3 { font-family: poppins; font-size: 20px; line-height: 146%; font-weight: 400; } 
+ .video_list section p { color: #B1B1B1; font-size: 20px;line-height: 141%; } 
+ .video_list section p span { display: block; } 
+ .video_sidebar h2 { font-size: 32px; line-height: 100%; margin-bottom: 55px;position: relative;padding-top: 17px;} 
+ .video_sidebar h2::before { content: ""; background: #FF1E1E; width: 52px; height: 4px; position: absolute; left: 0; top: 0; } 
+
+ /* latest posts */
+ #latest_posts { background: #000; padding: 53px 0;}
+.latest_posts_info h2 { padding-top: 18px;font-size: 32px; line-height: 100%; position: relative; } 
+ .latest_posts_info { color: #fff; position: relative;margin-bottom: 33px;} 
+ .latest_posts_info h2::before { content: ""; background: #FF1E1E; width: 52px; height: 4px; position: absolute; left: 0; top: 0; } 
+ .latest_posts_info a { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: #fff; font-size: 20px; padding-right: 58px;} 
+ .latest_posts_info a:hover { text-decoration: underline; } 
+ .latest_posts_info a::before { content: url(assets/images/arrow_circle_right.svg); position: absolute; top: 50%; transform: translateY(-50%); right: 0; } 
+
+ .latest_posts_boxes section { position: relative; color: #fff;} 
+ .latest_posts_boxes section h2 { font-weight: 500; font-size: 20px; line-height: 147%; } 
+ .latest_posts_boxes section figure { margin-bottom: 20px; } 
+ .latest_posts_boxes section a { width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
+ .latest_posts_boxes .slick-dots { margin-top: 30px; } 
+
+ /* categories */
+ #categories { background: #000; color: #fff; } 
+.categories_tab { border-bottom: 1px solid #fff; margin-bottom: 127px;} 
+.categories_tab ul { display: flex; justify-content: space-between; } 
+.categories_tab ul li { padding: 20px 79px;cursor: pointer;position: relative; margin: 0 auto; } 
+.categories_tab ul li:hover::before, .categories_tab ul li.active::before { background: #FF1E1E; content: ""; position: absolute; width: 100%; height: 1px; left: 0; right: 0; bottom: -1px; } 
+
+.categories_boxes { width: calc(100% - 543px); display: flex; justify-content: space-between; flex-wrap: wrap; } 
+ .categories_boxes section { width: 48%; text-align: center; padding: 27px 15px 91px;position: relative; border: 1px solid #FFFFFF;border-radius: 10px;margin-bottom: 40px;} 
+ .categories_boxes section figure { border-radius: 10px; overflow: hidden; display: inline-block; } 
+ .categories_box_info { text-align: left; padding: 0 11px;} 
+ .categories_box_info h4 { color: #949494; margin: 15px 0; font-family: poppins; font-size: 20px; line-height: 100%; } 
+ .categories_box_info h2 { font-family: poppins; font-weight: 600; font-size: 29px; line-height: 151%; } 
+ .categories_box_info a { position: absolute; content: url(assets/images/arrow_right.svg); right: 26px;bottom: 35px; } 
+
+ /* footer */
+ .footer { background: #1F1F1F; color: #fff; } 
+ .footer_social { border-bottom: 0.5px solid #595959; } 
+ .footer_social ul { display: flex; justify-content: space-between; align-items: end; max-width: 194px; margin-left: auto; padding: 42px 0 21px; max-width: 221px; padding-right: var(--page-margin); padding-left: var(--page-margin);} 
+ .footer_social h2{font-weight: 500; font-size: 20px; line-height: 100%; display: none;}
+
+ .footer_info { border-bottom: 0.5px solid #595959; padding: 20px 0; padding-left: var(--page-margin); padding-right: var(--page-margin); } 
+ .footer_info p { font-weight: 300; font-size: 16px; line-height: 158%; margin-bottom: 15px; } 
+ .footer_info a { color: inherit; font-weight: 700; font-size: 16px; line-height: 100%; } 
+ .footer_info a:hover { text-decoration: underline; } 
+
+ .footer_nav { border-bottom: 0.5px solid #595959; padding: 22px 0; padding-left: var(--page-margin); padding-right: var(--page-margin); } 
+ .footer_nav h2 { font-weight: 500; font-size: 16px; line-height: 100%; margin-bottom: 24px; } 
+
+ .contact_info { border-bottom: 0.5px solid #595959; padding: 16px 0; padding-left: var(--page-margin); padding-right: var(--page-margin); } 
+.contact_info h2 { font-weight: 500; line-height: 100%; font-size: 18px;margin-bottom: 23px; } 
+ 
+.footer_location { border-bottom: 0.5px solid #595959; padding: 22px 0; padding-left: var(--page-margin); padding-right: var(--page-margin); } 
+ .footer_location h2 { font-weight: 500; font-size: 18px; line-height: 100%; margin-bottom: 22px; } 
+ .footer_location address { font-size: 16px; line-height: 184%; font-weight: 300; margin-bottom: 15px; } 
+ .footer_location iframe { height: 176px; width: 100%; } 
+ .contact_info ul { padding-left: 20px; } 
+
+ .copyright { color: #666666; text-align: center; padding: 12px 0; font-size: 16px; line-height: 100%; } 

@@ -1,0 +1,9 @@
+.comments { background: #1a1a1a0b; padding: 40px 25px; } 
+#comments-list { margin: 40px 0; } 
+.comment ul.children { margin-left: 35px; } 
+.comment ul li { margin-bottom: 40px; } 
+.comments ul li p { padding: 25px 10px; background: #1a1a1a1a; margin: 15px 0; } 
+
+.comment-body { margin: 35px 0; } 
+.comment-form-comment { margin: 40px 0 15px; } 
+.comment-form-comment label { display: block; } 
