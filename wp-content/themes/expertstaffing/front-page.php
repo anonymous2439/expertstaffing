@@ -1,5 +1,8 @@
 <?php get_header(); ?>
     <div id="banner">
+        <div class="bnr_bg">
+            <figure><img src="<?php bloginfo('template_url');?>/assets/images/bnr_bg.jpg" alt=""></figure>
+        </div>
         <div class="wrapper">
             <div class="bnr_con">
                 <div class="bnr_info">
@@ -23,12 +26,14 @@
             <div class="videos_con">
                 <div class="selected_video">
 
+                    <div id="player"></div>
+
                 </div>
                 <div class="video_sidebar">
                     <h2>More Videos</h2>
                     <div class="video_list">
                         <?php for ($i = 0; $i <= 10; $i++) { ?>
-                        <section>
+                        <section onclick="onVideoListClick('w_2y7YyS8SQ')">
                             <figure><img src="<?php bloginfo('template_url');?>/assets/images/dummy_thumb.jpg" alt=""></figure>
                             <h3>What Is Bookkeeping And Its Importance To Business</h3>
                             <p>By Eventomax <span>13 hours ago</span></p>
@@ -69,12 +74,20 @@
                         <li class="active">NEWS</li>
                         <li>INDUSTRY</li>
                         <li>TECHNOLOGY</li>
-                        <li>BUSINESS</li>
+                        <li>INTERESTS</li>
                     </ul>
+                    <div class="categories_tab_mobile">
+                        <select name="categories_select" onchange="categoriesTabChange()" id="categories_select">
+                            <option value="1">NEWS</option>
+                            <option value="2">INDUSTRY</option>
+                            <option value="3">TECHNOLOGY</option>
+                            <option value="4">INTERESTS</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="categories_content">
                     <div class="categories_boxes">
-                        <?php for ($i = 0; $i < 4; $i++) { ?>
+                        <?php for ($i = 0; $i < 12; $i++) { ?>
                         <section>
                             <figure><img src="<?php bloginfo('template_url');?>/assets/images/dummy_categories_box.jpg" alt=""></figure>
                             <div class="categories_box_info">
@@ -88,21 +101,69 @@
                     <div class="categories_sidebar">
                         <div class="categories_sidebar_tab">
                             <ul>
-                                <li>Latest Stories</li>
+                                <li class="active">Latest Stories</li>
                                 <li>Most Read</li>
                             </ul>
                         </div>
-                        
+                        <div class="categories_sidebar_content">
+                            <?php for ($i = 0; $i <= 10; $i++) { ?>
+                            <section>
+                                <figure><img src="<?php bloginfo('template_url');?>/assets/images/dummy_thumb.jpg" alt=""></figure>
+                                <h3>What Is Bookkeeping And Its Importance To Business</h3>
+                                <p>By Eventomax <span>13 hours ago</span></p>
+                            </section>
+                            <?php } ?>
+                        </div>                  
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="bottom">
+    <div id="job_openings">
         <div class="wrapper">
-            <div class="btm_con">
-                
+            <div class="job_openings_con">
+                <div class="job_openings_info">
+                    <h2>Job Openings</h2>
+                </div>
+                <div class="job_openings_boxes">
+                    <section>
+                        <h2>Business Development Officer</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Appointment Setter</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>DevOps Engineer</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Talent Acquisition Specialist</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Corporate Appointment Setter</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Sales Representative</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>UI/UX Designer</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Graphic Designer</h2>
+                        <a href="#!"></a>
+                    </section>
+                    <section>
+                        <h2>Front-end Developer</h2>
+                        <a href="#!"></a>
+                    </section>
+                </div>
             </div>
         </div>
     </div>

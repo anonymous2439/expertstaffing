@@ -39,8 +39,21 @@
                     <input type="text" placeholder="Search Blogs">
                     <button type="submit"></button>
                 </form>
-                <a href="#!">Sign up</a>
-                <a href="#!">Log in</a>
+                <div class="top_nav">
+                    <a href="<?php echo get_home_url(); ?>/wp-login.php?action=register">Sign up</a>
+                    <a href="<?php echo get_home_url(); ?>/wp-login.php">Log in</a>
+                </div>
+                <div class="hamburger_menu"></div>
+                <div class="right_nav">
+                    <div class="right_nav_con">
+                        <div class="right_nav_menu">
+                            <ul>
+                                <li><a href="<?php echo get_home_url(); ?>/wp-login.php?action=register">Sign up</a></li>
+                                <li><a href="<?php echo get_home_url(); ?>/wp-login.php">Log in</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

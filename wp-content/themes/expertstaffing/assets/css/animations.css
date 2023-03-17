@@ -2022,68 +2022,6 @@
     animation-name: rotateUp;
 }
 
-/* toggle nav */
-@keyframes togglenav_hide {
-    0% {
-        transform-origin: center center;
-        transform: translateX(0);
-
-    }
-    100% {
-        transform-origin: center center;
-        transform: translateX(-250px);
-
-    }
-}
-.togglenav_hide {
-    animation-duration: .6s;
-    animation-fill-mode: both;
-    animation-name: togglenav_hide;
-}
-
-@keyframes togglenav_active {
-    0% {        
-        transform-origin: center center;
-        transform: translateX(0);
-
-    }
-    100% {
-        transform-origin: center center;
-        transform: translateX(250px);
-
-    }
-}
-.togglenav_active {
-    animation-duration: .6s;
-    animation-fill-mode: both;
-    animation-name: togglenav_active;
-}
-/* end toggle nav */
-
-
-/* toggle nav overlay */
-@keyframes togglenavoverlay_hide {
-    0% {
-        transform-origin: center center;
-        opacity: 0;
-        display: none !important;
-        position: absolute;
-        z-index: 0;
-        
-    }
-    100% {
-        transform-origin: center center;
-        opacity: 0.2;
-    }
-}
-.togglenavoverlay_hide {
-    animation-duration: .6s;
-    animation-fill-mode: both;
-    animation-name: togglenavoverlay_hide;
-}
-/* end toggle nav overlay */
-
-
 @-webkit-keyframes fadeInOut {
     0% {opacity: 0;}
     20% {opacity: 1;}
@@ -2103,4 +2041,51 @@
 .fadeInOut.go {
     -webkit-animation-name: fadeInOut;
     animation-name: fadeInOut;
+}
+
+
+@-webkit-keyframes fixedholder {
+    0% {transform: translateY(-105px);}
+    100% {transform: translateY(0)}
+}
+@keyframes fixedholder {
+    0% {transform: translateY(-105px);}
+    100% {transform: translateY(0)}
+}
+.fixedholder{
+    animation-duration: .6s;
+    animation-fill-mode: both;
+    -webkit-animation-name: fixedholder;
+    animation-name: fixedholder;
+}
+
+
+@-webkit-keyframes slick-inactive {
+    0% {filter: blur(0);transform: scale(1);}
+    100% {filter: blur(2px);transform: scale(0.9);}
+}
+@keyframes slick-inactive {
+    0% {filter: blur(0);transform: scale(1);}
+    100% {filter: blur(2px);transform: scale(0.9);}
+}
+.rates_sections section{
+    animation-duration: .6s;
+    animation-fill-mode: both;
+    -webkit-animation-name: slick-inactive;
+    animation-name: slick-inactive;
+}
+
+@-webkit-keyframes slick-active {
+    0% {filter: blur(2px);transform: scale(0.9);}
+    100% {filter: blur(0);transform: scale(1);}
+}
+@keyframes slick-active {
+    0% {filter: blur(2px);transform: scale(0.9);}
+    100% {filter: blur(0);transform: scale(1);}
+}
+.rates_sections section.slick-active{
+    animation-duration: .6s;
+    animation-fill-mode: both;
+    -webkit-animation-name: slick-active;
+    animation-name: slick-active;
 }
