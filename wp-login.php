@@ -206,7 +206,11 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 
 	?>
 	<div id="login">
-		<h1><a href="<?php echo esc_url( $login_header_url ); ?>"><?php echo $login_header_text; ?></a></h1>
+		<h1>
+			<figure>
+				<img style="width: 100%;" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/main_logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+</figure>
+		</h1>
 	<?php
 	/**
 	 * Filters the message to display above the login form.

@@ -5,7 +5,7 @@
             <div class="wrapper">
                 <div class="fourzerofour_con">
                     <div class="fourzerofour_img">
-                        <figure><img src="<?php bloginfo('template_url');?>/assets/images/fourzerofour_img.png" alt="four zero four graphic"></figure>
+                        <figure><img src="<?php bloginfo('template_url');?>/assets/images/fourzerofour.svg" alt="four zero four graphic"></figure>
                     </div>
                     <h1 class="fourzerofour_text">Oops! Seems like the page that your looking for does not exist or an error occurred.</h1>
                     <div class="home_btn">

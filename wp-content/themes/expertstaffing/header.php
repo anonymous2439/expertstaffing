@@ -26,7 +26,7 @@
 	<?php }?>
 
 </head>
-<body>
+<body class="<?php if(is_front_page()){ echo 'is-home'; }else{ echo 'non-home'; } ?>">
     <div class="header_holder">
 <header>
     <div class="wrapper">
@@ -35,11 +35,11 @@
                 <a href="<?php echo get_home_url(); ?>"><figure><img src="<?php bloginfo('template_url');?>/assets/images/main_logo.png" alt="expert staffing logo"></figure></a>
             </div>
             <div class="user_functions">
-                <form action="/">
-                    <input type="text" placeholder="Search Blogs">
+                <form action="<?php echo get_home_url(); ?>">
+                    <input name="s" type="text" placeholder="Search Blogs">
                     <button type="submit"></button>
                 </form>
-                <div class="top_nav">
+                <!-- <div class="top_nav">
                     <a href="<?php echo get_home_url(); ?>/wp-login.php?action=register">Sign up</a>
                     <a href="<?php echo get_home_url(); ?>/wp-login.php">Log in</a>
                 </div>
@@ -53,7 +53,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

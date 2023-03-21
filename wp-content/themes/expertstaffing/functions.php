@@ -124,6 +124,20 @@ function my_phpmailer_example( $phpmailer ) {
 
     // echo '<script>alert("check mail...");</script>';
 
+    function custom_post_views() {
+        if (is_single()) {
+            $post_id = get_the_ID();
+            $views = get_post_meta($post_id, 'post_views_count', true);
+            if ($views == '') {
+                $views = 0;
+                add_post_meta($post_id, 'post_views_count', '0');
+            } else {
+                $views++;
+                update_post_meta($post_id, 'post_views_count', $views);
+            }
+        }
+    }
+    add_action('wp_head', 'custom_post_views');
 
 
     if(isset($_POST['submit_contact'])){
@@ -152,4 +166,16 @@ function my_phpmailer_example( $phpmailer ) {
         $conn->close();
     }
 
+    // setting the samesite attribute
+    function set_cookie_with_samesite_none() {
+        setcookie( 'LAST_RESULT_ENTRY_KEY', 'cookie_value', [
+            'expires' => time() + 3600,
+            'path' => '/',
+            'domain' => 'expertstaffingnews.com',
+            'secure' => true,
+            'httponly' => true,
+            'SameSite' => 'None'
+        ] );
+    }
+    add_action( 'init', 'set_cookie_with_samesite_none' );
 ?>

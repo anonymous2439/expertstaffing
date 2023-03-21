@@ -64,17 +64,17 @@ $( document ).ready(function() {
 	
 
 	$(".latest_posts_boxes").slick(options);
-	$(".categories_boxes").slick(options2);
+	$(".categories_carousel").slick(options2);
 
 	// toggle hamburger menu
-	$('.hamburger_menu').on("click", function(){
-		$('.right_nav').toggle("slow");
-	});
+	// $('.hamburger_menu').on("click", function(){
+	// 	$('.right_nav').toggle("slow");
+	// });
 
 	
 	// set default active nav
-	$(".top_nav ul li:first-child").addClass("active");
-	$(".right_nav ul li:first-child").addClass("active");
+	// $(".top_nav ul li:first-child").addClass("active");
+	// $(".right_nav ul li:first-child").addClass("active");
 
 	// back to top
 	$('.back_top').click(function () { // back to top
@@ -84,32 +84,127 @@ $( document ).ready(function() {
 		return false;
 	});
 
+	$('#categories_tab li').click(function() {
+		var category_name = $(this).attr('id');
+    	window.location.href = '?category=' + category_name + '#categories_tab';
+	});
+
+	$('#categories_select').on('change', function() {
+		var selectedOption = $(this).val();
+    	window.location.href = '?category=' + selectedOption + '#categories_tab';
+	  });
+
+
+	function categoriesSidebarClick(n){
+		$('.categories_sidebar_content .content').hide();
+		$('.categories_sidebar_content .content'+n).show();
+	
+		$('.categories_sidebar_tab .tab').removeClass('active');
+		$('.categories_sidebar_tab .tab'+n).addClass('active');
+	}
+	
+
+	// check if the current page is the homepage
+	if ( $('body').hasClass('is-home') ) {
+		function onYouTubeIframeAPIReady(){
+			if (document.readyState === 'complete') {
+				initPlayer();
+			} else {
+				window.addEventListener('load', initPlayer);
+			}
+		}
+		
+		function initPlayer() {
+			player = new YT.Player('player', {
+				videoId: "wrN4GtXm4DY",
+				playerVars: {
+					autoplay: 0,
+					controls: 1,
+					rel: 0,
+					showinfo: 0,
+					origin: "https://expertstaffingnews.com"
+				},
+				events: {
+					'onReady': onPlayerReady,
+					'onStateChange': onPlayerStateChange,
+				}
+			});
+		}
+		
+		function onPlayerReady(event) {
+			event.target.playVideo();
+		}
+		  
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.PLAYING) {
+				// Video is now playing, show the player element
+				document.getElementById('player').style.display = 'block';
+			}
+		}
+
+		function onVideoListClick(id){
+			if(player){
+				player.loadVideoById(id);
+			}
+		}
+	}
+	
+	
+	
+
 	onResize();
 });
 
+function categoriesSidebarClick(n){
+	$('.categories_sidebar_content .content').hide();
+	$('.categories_sidebar_content .content'+n).show();
 
-function onVideoListClick(id){
-	player.loadVideoById(id);
+	$('.categories_sidebar_tab .tab').removeClass('active');
+	$('.categories_sidebar_tab .tab'+n).addClass('active');
 }
+
 
 function onYouTubeIframeAPIReady(){
-	player = new YT.Player('player', {
-		videoId: "wrN4GtXm4DY",
-		playerVars: {
-			autoplay: 0,
-			controls: 1,
-			rel: 0,
-			showinfo: 0
-		},
-		events: {
-            'onReady': function() {
-                onVideoListClick("wrN4GtXm4DY");
-            },
-        }
-	});
+    if (document.readyState === 'complete') {
+        initPlayer();
+    } else {
+        window.addEventListener('load', initPlayer);
+    }
 }
 
+function initPlayer() {
+    player = new YT.Player('player', {
+        videoId: "wrN4GtXm4DY",
+        playerVars: {
+            autoplay: 0,
+            controls: 1,
+            rel: 0,
+            showinfo: 0,
+			origin: "https://expertstaffingnews.com"
+        },
+        events: {
+            'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange,
+        }
+    });
+}
 
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+  
+function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING) {
+		// Video is now playing, show the player element
+		document.getElementById('player').style.display = 'block';
+	}
+}
+
+function onVideoListClick(id){
+    if(player){
+        player.loadVideoById(id);
+    }
+}
 
 
 // on window scroll
@@ -141,13 +236,13 @@ $(window).resize(function() {
 });
 function onResize(){
 	window_width = $(window).width();
-	if($('.categories_boxes').hasClass('slick-initialized'))
-			$(".categories_boxes").slick("unslick");
+	if($('.categories_carousel').hasClass('slick-initialized'))
+			$(".categories_carousel").slick("unslick");
 
 	if( $(this).width() <= 1000 ) {
-		$(".categories_boxes").slick(options3).slick("setPosition");
+		$(".categories_carousel").slick(options3).slick("setPosition");
 	}
 	else{
-		$(".categories_boxes").slick(options2).slick("setPosition");
+		$(".categories_carousel").slick(options2).slick("setPosition");
 	}
 }

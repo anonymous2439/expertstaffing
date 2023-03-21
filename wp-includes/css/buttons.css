@@ -238,8 +238,8 @@ TABLE OF CONTENTS:
 ---------------------------------------------------------------------------- */
 
 .wp-core-ui .button-primary {
-	background: #2271b1;
-	border-color: #2271b1;
+	background: #FF1E1E;
+	border-color: #FF1E1E;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: none;
@@ -249,9 +249,8 @@ TABLE OF CONTENTS:
 .wp-core-ui .button-primary:hover,
 .wp-core-ui .button-primary.focus,
 .wp-core-ui .button-primary:focus {
-	background: #135e96;
-	border-color: #135e96;
-	color: #fff;
+	color: #000;
+    background: #fff;
 }
 
 .wp-core-ui .button-primary.focus,

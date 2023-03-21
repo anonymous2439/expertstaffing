@@ -26,15 +26,19 @@
     .categories_sidebar_content section h3 { font-size: 18px; } 
     .categories_sidebar_content section p { font-size: 16px; } 
     .categories_sidebar_tab ul li { font-size: 22px; } 
+
+    /* article single page */
+    #conclusion .social ul { column-gap: 11px; } 
 }
 
 @media only screen and (max-width: 1000px) {
     /* header */
     .header_con { min-height: 71px; } 
-    .main_logo { width: 125px; } 
+    .main_logo { width: 230px; } 
 
     .top_nav{display: none;}
-    .user_functions form { width: 199px; margin-right: 61px; } 
+    .user_functions { margin: 15px 0; } 
+    .user_functions form { width: 199px; margin-right: 0; } 
     .user_functions form input { font-size: 18px; padding-left: 62px; } 
     .user_functions form::before { top: unset; transform: unset; left: 20px; transform: scale(0.5); transform-origin: 0; } 
     .hamburger_menu { display: block; right: 0; top: 8px; } 
@@ -70,6 +74,9 @@
 
     /* footer */
     .copyright { text-align: center; font-size: 18px; font-weight: 300; } 
+
+    /* article single page */
+    .main_content { margin-bottom: 40px; } 
 }
 
 @media only screen and (max-width: 800px) {
@@ -87,8 +94,8 @@
       }
 
     /* header */
-    .main_logo { width: 91px; } 
-    .user_functions form { width: 168px; margin-right: 57px; } 
+    .main_logo {width: 148px;top: 23px; } 
+    .user_functions form { width: 168px; margin-right: 0; } 
     .user_functions form input { font-size: 16px; } 
 
     /* banner */
@@ -106,4 +113,10 @@
 
     /* job openings */
     .job_openings_boxes section { width: 100%; padding: 20px 24% 20px 4%; } 
+
+    /* footer */
+    .copyright { line-height: 141%; padding: 20px 16px; } 
+
+    /* articles single page */
+    .main_content_header ul li { margin-right: 10px; margin-bottom: 10px; } 
 }
