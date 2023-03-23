@@ -9,6 +9,11 @@
             <li><?php echo get_comments_number(); ?></li>
         </ul>
     </div>
+    <?php if ( is_active_sidebar( 'content-headers' ) ) : ?>
+        <div class="sidebar-content-headers">
+            <?php dynamic_sidebar( 'content-headers' ); ?>
+        </div>
+    <?php endif; ?>
     <figure class="featured_img"><?php the_post_thumbnail(); ?></figure>
     <?php the_content(); ?>
     <div class="clearfix"></div>

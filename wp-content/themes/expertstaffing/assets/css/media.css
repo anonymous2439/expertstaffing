@@ -61,11 +61,11 @@
 
     .categories_boxes { width: 100%; } 
     .categories_boxes section { max-width: 410px;margin-right: 15px; } 
-    .categories_box_info { flex-direction: column; } 
+    .categories_box_info { flex-direction: column; float: none;width: 100%;} 
     .categories_sidebar { position: static; width: 100%;max-width: 100%;padding: 0;border-left: none;border-top: 2px solid #ffffff6c;margin-top: 40px;padding-top: 40px;} 
     .categories_tab { margin-bottom: 40px; } 
     .categories_sidebar_tab ul li { text-align: center !important; } 
-    .categories_sidebar_content { height: 266px; position: static; } 
+    .categories_sidebar_content { height: 266px; position: static; padding: 0;} 
     
     /* job openings */
     .job_openings_boxes section { width: 49%; padding: 20px 11% 20px 4%; margin: 0 auto; } 
@@ -77,6 +77,16 @@
 
     /* article single page */
     .main_content { margin-bottom: 40px; } 
+    main h2 { font-size: 26px; line-height: 126%; } 
+    main h3 { font-size: 22px; } 
+    main h4 { font-size: 20px; } 
+     .alignright, .alignleft { max-width: 100%; float: none !important;margin: 25px auto !important;} 
+
+     /* search */
+     .search section { text-align: center; max-width: 100%; margin: 0 auto 20px; } 
+     .search_con section .categories_box_info { float: none; width: 100%; } 
+    .search section h2 { margin-bottom: 15px; } 
+    .search section p { font-size: 16px; }     
 }
 
 @media only screen and (max-width: 800px) {
@@ -86,6 +96,9 @@
 
     /* videos */
     .selected_video { min-height: 342px; } 
+
+    /* articles single page */
+    .featured_img { float: none; max-width: 100%; margin: 0 auto 40px; text-align: center; } 
 }
 
 @media only screen and (max-width: 600px) {

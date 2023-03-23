@@ -23,6 +23,7 @@
 <script src="https://www.youtube.com/player_api"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url');?>/assets/slick/slick.min.js"></script>
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
+<script src="https://www.youtube.com/iframe_api"></script>
 <script src="<?php bloginfo('template_url');?>/assets/js/plugins.js"></script>
 </body>
 </html>

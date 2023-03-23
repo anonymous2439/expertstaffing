@@ -54,8 +54,124 @@ function customtheme_widget_areas(){
         'before_title' => '',
         'after_title' => '',
     ));
+
+    register_sidebar( array(
+        'name'          => __( 'Content Headers', 'your-theme' ),
+        'id'            => 'content-headers',
+        'description'   => __( 'Add widgets here to display all the content headers of a page.', 'your-theme' ),
+        'before_widget' => '<div class="widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
 }
 add_action('widgets_init', 'customtheme_widget_areas');
+
+
+
+
+
+// Register the custom widget
+function register_custom_widgets() {
+    register_widget( 'Content_Header_Widget' );
+}
+add_action( 'widgets_init', 'register_custom_widgets' );
+
+// Define the custom widget class
+class Content_Header_Widget extends WP_Widget {
+
+    public function __construct() {
+        parent::__construct(
+            'content_header_widget',
+            'Content Header Widget',
+            array(
+                'description' => 'Displays all content headers on the current page.',
+            )
+        );
+    }
+
+    public function widget( $args, $instance ) {
+        global $post;
+
+        // Get all the headers in the current post
+        $headers = get_post_headers( $post->post_content );
+
+        if ( ! empty( $headers ) ) {
+            echo $args['before_widget'];
+            echo $args['before_title'] . 'Headings' . $args['after_title'];
+            echo '<ul>';
+            foreach ( $headers as $header ) {
+                echo '<li><a href="#' . sanitize_title( $header ) . '">' . $header . '</a></li>';
+            }
+            echo '</ul>';
+            echo $args['after_widget'];
+        }
+    }
+}
+
+// Get all the headers in a post
+function get_post_headers( $content ) {
+    $headers = array();
+    $pattern = '/<h([1-6])[^>]*>(.*?)<\/h\1>/si';
+    preg_match_all( $pattern, $content, $matches );
+    if ( ! empty( $matches[2] ) ) {
+        $headers = $matches[2];
+    }
+    return $headers;
+}
+
+
+function add_ids_to_headers($content) {
+    $pattern = '/<h([2-6])(.*?)>(.*?)<\/h[2-6]>/i';
+    $replacement = '<h$1$2><a id="$3" name="$3">' . preg_replace('/\s+/', '-', '$3') . '</a></h$1>';
+    $content = preg_replace($pattern, $replacement, $content);
+    return $content;
+}
+add_filter('the_content', 'add_ids_to_headers');
+
+class Custom_Sidebar_Widget extends WP_Widget {
+    public function __construct() {
+        $widget_ops = array(
+            'classname' => 'custom_sidebar_widget',
+            'description' => 'Displays a list of headers in the current post or page'
+        );
+        parent::__construct('custom_sidebar_widget', 'Custom Sidebar Widget', $widget_ops);
+    }
+
+    public function widget($args, $instance) {
+        global $post;
+
+        // Only display widget on single posts and pages
+        if (is_singular()) {
+            $output = '';
+
+            // Get all headers with IDs from post content
+            $pattern = '/<h([2-6])(.*?)><a id="(.*?)" name="(.*?)">(.*?)<\/a><\/h[2-6]>/i';
+            preg_match_all($pattern, $post->post_content, $matches, PREG_SET_ORDER);
+
+            // Create list of links to headers
+            if (!empty($matches)) {
+                $output .= '<ul>';
+                foreach ($matches as $match) {
+                    $output .= '<li><a href="#' . $match[3] . '">' . $match[5] . '</a></li>';
+                }
+                $output .= '</ul>';
+            }
+
+            // Display widget
+            if (!empty($output)) {
+                echo $args['before_widget'];
+                echo $args['before_title'] . 'Table of Contents' . $args['after_title'];
+                echo $output;
+                echo $args['after_widget'];
+            }
+        }
+    }
+}
+
+
+
+
 
 
 // function that runs when shortcode is called
@@ -124,20 +240,20 @@ function my_phpmailer_example( $phpmailer ) {
 
     // echo '<script>alert("check mail...");</script>';
 
-    function custom_post_views() {
-        if (is_single()) {
-            $post_id = get_the_ID();
-            $views = get_post_meta($post_id, 'post_views_count', true);
-            if ($views == '') {
-                $views = 0;
-                add_post_meta($post_id, 'post_views_count', '0');
-            } else {
-                $views++;
-                update_post_meta($post_id, 'post_views_count', $views);
-            }
-        }
-    }
-    add_action('wp_head', 'custom_post_views');
+    // function custom_post_views() {
+    //     if (is_single() && !is_user_logged_in() && !wp_is_bot()) {
+    //         $post_id = get_the_ID();
+    //         $views = get_post_meta($post_id, 'post_views_count', true);
+    //         if ($views == '') {
+    //             $views = 0;
+    //             add_post_meta($post_id, 'post_views_count', '0');
+    //         } else {
+    //             $views++;
+    //             update_post_meta($post_id, 'post_views_count', $views);
+    //         }
+    //     }
+    // }
+    // add_action('wp_head', 'custom_post_views');
 
 
     if(isset($_POST['submit_contact'])){
@@ -165,6 +281,15 @@ function my_phpmailer_example( $phpmailer ) {
         $query->close();
         $conn->close();
     }
+
+    function force_comments_open( $open, $post_id ) {
+        $post = get_post( $post_id );
+        if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
+            return true;
+        }
+        return $open;
+    }
+    add_filter( 'comments_open', 'force_comments_open', 10, 2 );
 
     // setting the samesite attribute
     function set_cookie_with_samesite_none() {

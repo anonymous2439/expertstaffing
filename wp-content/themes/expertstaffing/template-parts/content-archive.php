@@ -16,7 +16,7 @@
         ?--> 
 
         <h2 class="post_intro">
-        <?php the_title(); ?>
+            <?php the_title(); ?>
         </h2>
         <a class="more_link" href="<?php the_permalink();?>">Read more &rarr;</a>
     </div>

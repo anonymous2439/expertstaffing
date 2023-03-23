@@ -103,55 +103,8 @@ $( document ).ready(function() {
 		$('.categories_sidebar_tab .tab'+n).addClass('active');
 	}
 	
-
-	// check if the current page is the homepage
-	if ( $('body').hasClass('is-home') ) {
-		function onYouTubeIframeAPIReady(){
-			if (document.readyState === 'complete') {
-				initPlayer();
-			} else {
-				window.addEventListener('load', initPlayer);
-			}
-		}
-		
-		function initPlayer() {
-			player = new YT.Player('player', {
-				videoId: "wrN4GtXm4DY",
-				playerVars: {
-					autoplay: 0,
-					controls: 1,
-					rel: 0,
-					showinfo: 0,
-					origin: "https://expertstaffingnews.com"
-				},
-				events: {
-					'onReady': onPlayerReady,
-					'onStateChange': onPlayerStateChange,
-				}
-			});
-		}
-		
-		function onPlayerReady(event) {
-			event.target.playVideo();
-		}
-		  
-		function onPlayerStateChange(event) {
-			if (event.data == YT.PlayerState.PLAYING) {
-				// Video is now playing, show the player element
-				document.getElementById('player').style.display = 'block';
-			}
-		}
-
-		function onVideoListClick(id){
-			if(player){
-				player.loadVideoById(id);
-			}
-		}
-	}
 	
-	
-	
-
+	initPlayer();
 	onResize();
 });
 
@@ -165,6 +118,7 @@ function categoriesSidebarClick(n){
 
 
 function onYouTubeIframeAPIReady(){
+	
     if (document.readyState === 'complete') {
         initPlayer();
     } else {
@@ -173,37 +127,53 @@ function onYouTubeIframeAPIReady(){
 }
 
 function initPlayer() {
-    player = new YT.Player('player', {
-        videoId: "wrN4GtXm4DY",
-        playerVars: {
-            autoplay: 0,
-            controls: 1,
-            rel: 0,
-            showinfo: 0,
-			origin: "https://expertstaffingnews.com"
-        },
-        events: {
-            'onReady': onPlayerReady,
-			'onStateChange': onPlayerStateChange,
-        }
-    });
+	if ( $('body').hasClass('is-home') ) {
+		player = new YT.Player('player', {
+			videoId: "wrN4GtXm4DY",
+			playerVars: {
+				autoplay: 0,
+				controls: 1,
+				rel: 0,
+				showinfo: 0,
+				origin: "https://www.youtube.com"
+			},
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange,
+			}
+		});
+	}
 }
 
 function onPlayerReady(event) {
-	event.target.playVideo();
+	
 }
   
 function onPlayerStateChange(event) {
 	if (event.data == YT.PlayerState.PLAYING) {
-		// Video is now playing, show the player element
 		document.getElementById('player').style.display = 'block';
 	}
 }
 
 function onVideoListClick(id){
-    if(player){
-        player.loadVideoById(id);
-    }
+	if (player) {
+		player.loadVideoById(id);
+	} else {
+		player = new YT.Player('player', {
+			videoId: id,
+			playerVars: {
+				autoplay: 0,
+				controls: 1,
+				rel: 0,
+				showinfo: 0,
+				origin: "https://expertstaffingnews.com"
+			},
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
 }
 
 

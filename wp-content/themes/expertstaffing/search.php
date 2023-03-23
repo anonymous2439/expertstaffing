@@ -17,7 +17,7 @@
                                 $query->the_post();
                                 
                                 echo '<section>';
-                                    get_template_part('template-parts/content-archive');
+                                    get_template_part('template-parts/content-search');
                                 echo '</section>';
                             }
                         }

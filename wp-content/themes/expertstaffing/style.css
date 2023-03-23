@@ -242,7 +242,7 @@
  .top_nav a:last-of-type:hover { text-decoration: underline; } 
  
  .user_functions form { width: 309px; position: relative; } 
-.user_functions form::before { content: url("assets/images/magnifier.svg");position: absolute;top: 50%;transform: translateY(-50%);left: 31px; } 
+.user_functions form::before { content: url("assets/images/magnifier.svg");position: absolute;top: 50%;transform: translateY(-50%);left: 31px; pointer-events: none;} 
  .user_functions form button { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: none; } 
  .user_functions form input { width: 100%; height: 100%; border: none; background: #1D1D1D; border-radius: 10px; color: #fff; font-weight: 300; font-size: 18px; padding-left: 94px; } 
  
@@ -299,7 +299,8 @@
  .latest_posts_boxes section { position: relative; color: #fff;margin: 0 20px;max-width: 340px;transition: .6s;} 
  .latest_posts_boxes section:hover { opacity: .7; } 
  .latest_posts_boxes section h2 { font-weight: 500; font-size: 20px; line-height: 147%; } 
- .latest_posts_boxes section figure { margin-bottom: 20px; } 
+ .latest_posts_boxes section figure { margin-bottom: 20px; height: 231px;position: relative;} 
+ .latest_posts_boxes section figure img { height: auto; } 
  .latest_posts_boxes section a { width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
  .latest_posts_boxes .slick-dots { margin-top: 30px; } 
 
@@ -311,8 +312,9 @@
 .categories_tab ul li:hover::before, .categories_tab ul li.active::before { background: #FF1E1E; content: ""; position: absolute; width: 100%; height: 1px; left: 0; right: 0; bottom: -1px; } 
 
 .categories_boxes { width: calc(100% - 543px); display: flex; justify-content: space-between; flex-wrap: wrap; row-gap: 40px;} 
- .categories_boxes section { width: 100% !important; text-align: center; padding: 27px 15px 91px;position: relative; border: 1px solid #FFFFFF;border-radius: 10px;min-height: 546px;max-width: 443.5px;} 
+ .categories_boxes section { width: 100% !important; text-align: center; padding: 27px 15px 91px;position: relative; border: 1px solid #FFFFFF;border-radius: 10px;max-width: 443.5px;} 
  .categories_boxes section figure { border-radius: 10px; overflow: hidden; display: inline-block; } 
+ .categories_boxes section figure img { height: auto; } 
  .categories_box_info { text-align: left; padding: 0 11px;} 
  .categories_box_info h4 { color: #949494; margin: 15px 0; font-family: poppins; font-size: 20px; line-height: 100%; } 
  .categories_box_info h2 { font-family: poppins; font-weight: 600; font-size: 29px; line-height: 151%; } 
@@ -326,12 +328,12 @@
 .categories_sidebar_tab ul li:hover::before, .categories_sidebar_tab ul li.active::before { background: #FF1E1E; content: ""; position: absolute; width: 100%; height: 1px; left: 0; right: 0; bottom: -1px; } 
 .categories_sidebar_tab ul li:last-child { text-align: right; } 
 
-.categories_sidebar_content { position: absolute;height: auto; max-height: 1071px; overflow: auto; width: 100%;} 
+.categories_sidebar_content { position: absolute;height: auto; max-height: 1071px; overflow: auto; width: 100%;left: 0;right: 0;padding-left: 20px;} 
 .categories_sidebar_content section { position: relative; min-height: 118px; margin-bottom: 22px; padding-left: 133px;transition: .6s;} 
 .categories_sidebar_content section:hover { opacity: .7; } 
-.categories_sidebar_content section figure { position: absolute; left: 0; top: 50%;transform: translateY(-50%); width: 118px; height: 118px; } 
- .categories_sidebar_content section figure img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: auto;height: 100%;} 
- .categories_sidebar_content section h3 { font-family: poppins; font-size: 20px; line-height: 146%; font-weight: 400; } 
+.categories_sidebar_content section figure { position: absolute; left: 0; top: 50%;transform: translateY(-50%); width: 118px; height: 118px; background: #ffffff19;} 
+.categories_sidebar_content section figure img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);width: 118px;height: auto;} 
+.categories_sidebar_content section h3 { font-family: poppins; font-size: 20px; line-height: 146%; font-weight: 400; } 
 .categories_sidebar_content section p { color: #B1B1B1; font-size: 20px;line-height: 141%; } 
 .categories_sidebar_content section p span { display: block; } 
 .categories_sidebar_content section a { width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
@@ -367,30 +369,41 @@ article { padding-left: var(--page-margin); padding-right: var(--page-margin); }
 .main_con { padding: 100px 0; } 
 .main_content { margin-bottom: 125px; } 
 main{font-size: 16px;}
-main h3 { font-size: 26px; } 
+main figure { margin: 25px 0; } 
+main h3 { font-size: 26px; line-height: 112%;display: flex;flex-direction: column;} 
 main h3::before { content: ""; background: #FF1E1E; height: 100%; width: 6px; position: absolute; left: 0; top: 0; } 
 main h3 { position: relative; padding-left: 19px; margin-bottom: 20px; } 
-main h4 { position: relative; font-size: 20px; line-height: 100%; } 
+main h4 { position: relative; font-size: 20px; line-height: 100%; display: flex;flex-direction: column;} 
 main h4::before { content: ""; background: #FF1E1E; height: 100%; width: 4px; position: absolute; left: 0; top: 0; } 
 main h4 { padding-left: 10px; margin-bottom: 15px; } 
+main ul li, main ol li { margin-bottom: 15px; } 
+main ol { list-style-position: inside; } 
 main p { line-height: 172%; margin-bottom: 30px;} 
 main a{color: inherit;text-decoration: underline;}
 main a:hover{text-decoration: none;}
- main h1 { font-size: 40px; font-weight: 700; line-height: 100%; margin-bottom: 33px; position: relative; padding-left: 20px; } 
+ main h1 { font-size: 40px; font-weight: 700; line-height: 100%; margin-bottom: 33px; position: relative; padding-left: 20px; display: flex;flex-direction: column;} 
  main h1::before { content: ""; background: #FF1E1E; height: 100%; width: 8px; position: absolute; left: 0; top: 0; } 
- main h2 { font-size: 32px; font-weight: 700; line-height: 100%; margin-bottom: 33px; position: relative; padding-left: 20px; } 
+ main h2 { font-size: 32px; font-weight: 700; line-height: 124%; margin-bottom: 33px; position: relative; padding-left: 20px; display: flex;flex-direction: column;} 
  main h2::before { content: ""; background: #FF1E1E; height: 100%; width: 8px; position: absolute; left: 0; top: 0; } 
  .main_content_header ul li { display: inline-block; vertical-align: top; margin-right: 25px; padding-left: 30px; position: relative;top: -2px;} 
- .main_content_header ul li::before { content: url(assets/images/main_content_header1_icon.svg); position: absolute; left: 0; top: 0; } 
- .main_content_header ul li:nth-child(2)::before { content: url(assets/images/main_content_header2_icon.svg);}
+ .main_content_header ul li::before { content: url(assets/images/main_content_header1_icon.svg); position: absolute; left: 0; top: -3px; } 
+ .main_content_header ul li:nth-child(2)::before { content: url(assets/images/main_content_header2_icon.svg);top: -3px;}
  .main_content_header ul li:nth-child(3)::before { content: url(assets/images/main_content_header3_icon.svg);top: 2px;}
  .main_content_header { margin-bottom: 68px; } 
- .featured_img { float: left; margin: 0 15px 15px 0; } 
+ .featured_img { float: left; margin: 0 15px 15px 0; max-width: 48%;height: auto;} 
+ .featured_img img { height: auto; } 
 
+ .alignright, .alignleft { max-width: 48%; } 
 
  /* search results */
  .search { padding-bottom: 40px; } 
  #search_title { padding: 40px 0; } 
  .search .more_link { content: ""; position: static; color: #fff; margin-top: 20px; display: inline-block; } 
- .search section { margin-top: 40px; background: #ffffff4f; padding: 20px; } 
+ .search section { margin-top: 40px; background: #ffffff4f; padding: 20px; osition: relative;} 
+ .search_con section .categories_box_info { padding: 0; float: right; width: calc(100% - 430px); } 
+ .search section figure { display: inline-block; vertical-align: top; } 
+ .search section figure img { height: auto; } 
  .search .more_link:hover { text-decoration: underline; } 
+
+ /* non home */
+ .non-home .categories_boxes { width: 100%; } 
