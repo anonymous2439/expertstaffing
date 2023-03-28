@@ -43,39 +43,6 @@ function ghub_child_setup() {
 }
 add_action( 'after_setup_theme', 'ghub_child_setup' );
 
-// Register sidebars
-function customtheme_widget_areas(){
-    register_sidebar( array(
-        'name' => 'sidebar',
-        'id' => 'sidebar',
-        'description' => __( 'The primary widget area', 'customtheme' ),
-        'before_widget' => '<div class="widget-container %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '',
-        'after_title' => '',
-    ));
-
-    register_sidebar( array(
-        'name'          => __( 'Content Headers', 'your-theme' ),
-        'id'            => 'content-headers',
-        'description'   => __( 'Add widgets here to display all the content headers of a page.', 'your-theme' ),
-        'before_widget' => '<div class="widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h3 class="widget-title">',
-        'after_title'   => '</h3>',
-    ) );
-}
-add_action('widgets_init', 'customtheme_widget_areas');
-
-
-
-
-
-// Register the custom widget
-function register_custom_widgets() {
-    register_widget( 'Content_Header_Widget' );
-}
-add_action( 'widgets_init', 'register_custom_widgets' );
 
 // Define the custom widget class
 class Content_Header_Widget extends WP_Widget {
@@ -98,10 +65,10 @@ class Content_Header_Widget extends WP_Widget {
 
         if ( ! empty( $headers ) ) {
             echo $args['before_widget'];
-            echo $args['before_title'] . 'Headings' . $args['after_title'];
+            echo $args['before_title'] . 'Headlines' . $args['after_title'];
             echo '<ul>';
             foreach ( $headers as $header ) {
-                echo '<li><a href="#' . sanitize_title( $header ) . '">' . $header . '</a></li>';
+                echo '<li><a href="#' . substr(sanitize_title( $header ), 0, 20) . '">' . strip_tags($header) . '</a></li>';
             }
             echo '</ul>';
             echo $args['after_widget'];
@@ -109,10 +76,59 @@ class Content_Header_Widget extends WP_Widget {
     }
 }
 
+
+// Register sidebars
+function customtheme_widget_areas(){
+    register_sidebar( array(
+        'name' => 'sidebar',
+        'id' => 'sidebar',
+        'description' => __( 'The primary widget area', 'customtheme' ),
+        'before_widget' => '<div class="widget-container %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+
+    register_sidebar( array(
+        'name'          => __( 'Content Headers', 'your-theme' ),
+        'id'            => 'content-headers',
+        'description'   => __( 'Add widgets here to display all the content headers of a page.', 'your-theme' ),
+        'before_widget' => '<div class="widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+
+    register_sidebar( array(
+        'name'          => __( 'Job Openings', 'your-theme' ),
+        'id'            => 'job-openings',
+        'description'   => __( 'Add widgets here to display all the content headers of a page.', 'your-theme' ),
+        'before_widget' => '',
+        'after_widget'  => '',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+
+    register_widget( 'Content_Header_Widget' );
+}
+add_action('widgets_init', 'customtheme_widget_areas');
+
+
+function my_custom_block_enqueue() {
+    wp_enqueue_script(
+      'my-custom-block',
+      get_template_directory_uri() . '/blocks/job-openings.js',
+      array( 'wp-blocks', 'wp-i18n', 'wp-block-editor' ),
+      true
+    );
+  }
+  add_action( 'enqueue_block_editor_assets', 'my_custom_block_enqueue' );
+
+
 // Get all the headers in a post
 function get_post_headers( $content ) {
     $headers = array();
-    $pattern = '/<h([1-6])[^>]*>(.*?)<\/h\1>/si';
+    $pattern = '/<h([2-6])[^>]*>(.*?)<\/h\1>/si';
     preg_match_all( $pattern, $content, $matches );
     if ( ! empty( $matches[2] ) ) {
         $headers = $matches[2];
@@ -120,58 +136,17 @@ function get_post_headers( $content ) {
     return $headers;
 }
 
-
+// Assigns id's to all content post header
 function add_ids_to_headers($content) {
     $pattern = '/<h([2-6])(.*?)>(.*?)<\/h[2-6]>/i';
-    $replacement = '<h$1$2><a id="$3" name="$3">' . preg_replace('/\s+/', '-', '$3') . '</a></h$1>';
-    $content = preg_replace($pattern, $replacement, $content);
+    
+    $content = preg_replace_callback($pattern, function ($matches) {
+        return sprintf('<h%s%s id="%s">%s</h%s>', $matches[1], $matches[2], substr(sanitize_title($matches[3]), 0, 20), $matches[3], $matches[1]);
+    }, $content);
     return $content;
 }
+
 add_filter('the_content', 'add_ids_to_headers');
-
-class Custom_Sidebar_Widget extends WP_Widget {
-    public function __construct() {
-        $widget_ops = array(
-            'classname' => 'custom_sidebar_widget',
-            'description' => 'Displays a list of headers in the current post or page'
-        );
-        parent::__construct('custom_sidebar_widget', 'Custom Sidebar Widget', $widget_ops);
-    }
-
-    public function widget($args, $instance) {
-        global $post;
-
-        // Only display widget on single posts and pages
-        if (is_singular()) {
-            $output = '';
-
-            // Get all headers with IDs from post content
-            $pattern = '/<h([2-6])(.*?)><a id="(.*?)" name="(.*?)">(.*?)<\/a><\/h[2-6]>/i';
-            preg_match_all($pattern, $post->post_content, $matches, PREG_SET_ORDER);
-
-            // Create list of links to headers
-            if (!empty($matches)) {
-                $output .= '<ul>';
-                foreach ($matches as $match) {
-                    $output .= '<li><a href="#' . $match[3] . '">' . $match[5] . '</a></li>';
-                }
-                $output .= '</ul>';
-            }
-
-            // Display widget
-            if (!empty($output)) {
-                echo $args['before_widget'];
-                echo $args['before_title'] . 'Table of Contents' . $args['after_title'];
-                echo $output;
-                echo $args['after_widget'];
-            }
-        }
-    }
-}
-
-
-
-
 
 
 // function that runs when shortcode is called
@@ -187,100 +162,20 @@ function home_shortcode() {
 add_shortcode('contenturl', 'home_shortcode');
 
 
-
-function my_phpmailer_example( $phpmailer ) {
-    $phpmailer->isSMTP();     
-    $phpmailer->Host = 'smtp.google.com';
-    $phpmailer->SMTPAuth = true; // Ask it to use authenticate using the Username and Password properties
-    $phpmailer->Port = 587;
-    $phpmailer->Username = 'vivo5plus2439@gmail.com';
-    $phpmailer->Password = '41324372439';
-
-    // Additional settings…
-    $phpmailer->SMTPSecure = 'tls'; // Choose 'ssl' for SMTPS on port 465, or 'tls' for SMTP+STARTTLS on port 25 or 587
-    $phpmailer->From = "vivo5plus2439@gmail.com";
-    $phpmailer->FromName = "Neil Axinto";
-}
-// add_action( 'phpmailer_init', 'my_phpmailer_example' );
-
-// if(isset($_POST['send_test_mail'])){    
-//     if(isset($_POST['email']))
-//         $to = $_POST['email'];
-//     else{
-//         $to = 'axintoneil@gmail.com';
-//     }
-//     $subject = 'axintoneil.com mail';
-//     if(isset($_POST['message']))
-//         $message = $_POST['message'];
-//     else{
-//         $message = "message is empty";
-//     }
-
-//      add_action( 'phpmailer_init', 'my_phpmailer_example' );          
-
-//     wp_mail( $to, $subject, $message );
-
-//     remove_action( 'phpmailer_init', 'my_phpmailer_example' );
-
-//     echo '<script>alert("icheck daw imo mail if nasend na ba...");</script>';
-// }
-
-  
-
-    // $to = 'axintoneil@gmail.com';
-    // $subject = 'test php mailer';
-    // $message = "message is empty";
-    
-
-    // add_action( 'phpmailer_init', 'my_phpmailer_example' );          
-
-    // wp_mail( $to, $subject, $message );
-
-    // remove_action( 'phpmailer_init', 'my_phpmailer_example' );
-
-    // echo '<script>alert("check mail...");</script>';
-
-    // function custom_post_views() {
-    //     if (is_single() && !is_user_logged_in() && !wp_is_bot()) {
-    //         $post_id = get_the_ID();
-    //         $views = get_post_meta($post_id, 'post_views_count', true);
-    //         if ($views == '') {
-    //             $views = 0;
-    //             add_post_meta($post_id, 'post_views_count', '0');
-    //         } else {
-    //             $views++;
-    //             update_post_meta($post_id, 'post_views_count', $views);
-    //         }
-    //     }
-    // }
-    // add_action('wp_head', 'custom_post_views');
-
-
-    if(isset($_POST['submit_contact'])){
-        $servername = "localhost";
-        $database="workplace";
-        $username = "root";
-        $password = "";
-        
-        $conn = new mysqli($servername, $username, $password, $database);
-        
-        if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    function custom_post_views() {
+        if (is_single() && !is_user_logged_in()) {
+            $post_id = get_the_ID();
+            $views = get_post_meta($post_id, 'post_views_count', true);
+            if ($views == '') {
+                $views = 0;
+                add_post_meta($post_id, 'post_views_count', '0');
+            } else {
+                $views++;
+                update_post_meta($post_id, 'post_views_count', $views);
+            }
         }
-
-        $query = $conn->prepare("INSERT INTO forms (mail_from, mail_to, mail_subject, mail_message) VALUES (?, ?, ?, ?)");
-        $query->bind_param("ssss", $from, $to, $subject, $message);
-
-        $from = $_POST['contact_name'];
-        $to = "vivo5plus2439@gmail.com";
-        $subject = "Test subject";
-        $message = $_POST['message'];
-
-        $query->execute();
-
-        $query->close();
-        $conn->close();
     }
+    add_action('wp_head', 'custom_post_views');
 
     function force_comments_open( $open, $post_id ) {
         $post = get_post( $post_id );

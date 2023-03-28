@@ -56,6 +56,9 @@
     .latest_posts_boxes section { margin: 0 10px; } 
 
     /* categories */
+    .categories_con { min-height: 0; } 
+    .categories_content { min-height: 0; } 
+
     .categories_tab ul{display: none;}
     .categories_tab_mobile{display: block;}
 
@@ -82,11 +85,18 @@
     main h4 { font-size: 20px; } 
      .alignright, .alignleft { max-width: 100%; float: none !important;margin: 25px auto !important;} 
 
+     /* sidebar */
+     .sidebar_content_headers { display: none; } 
+    .main_content.with_sidebar { width: 100%; } 
+
      /* search */
      .search section { text-align: center; max-width: 100%; margin: 0 auto 20px; } 
      .search_con section .categories_box_info { float: none; width: 100%; } 
     .search section h2 { margin-bottom: 15px; } 
-    .search section p { font-size: 16px; }     
+    .search section p { font-size: 16px; }
+
+    /* non home */
+    .categories_nonhome .categories_boxes section { width: 49% !important; } 
 }
 
 @media only screen and (max-width: 800px) {
@@ -132,4 +142,7 @@
 
     /* articles single page */
     .main_content_header ul li { margin-right: 10px; margin-bottom: 10px; } 
+
+    /* non home */
+    .categories_nonhome .categories_boxes section { width: 100% !important; margin: 0 auto;} 
 }

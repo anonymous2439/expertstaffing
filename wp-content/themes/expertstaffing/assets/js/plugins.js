@@ -4,6 +4,7 @@ var speed="500";
 var window_width;
 var webHeight;
 var player;
+var url="https://www.youtube.com/embed/";
 
 $( document ).ready(function() {	
 	window_width = $(window).width();
@@ -66,16 +67,6 @@ $( document ).ready(function() {
 	$(".latest_posts_boxes").slick(options);
 	$(".categories_carousel").slick(options2);
 
-	// toggle hamburger menu
-	// $('.hamburger_menu').on("click", function(){
-	// 	$('.right_nav').toggle("slow");
-	// });
-
-	
-	// set default active nav
-	// $(".top_nav ul li:first-child").addClass("active");
-	// $(".right_nav ul li:first-child").addClass("active");
-
 	// back to top
 	$('.back_top').click(function () { // back to top
 		$("html, body").animate({
@@ -103,8 +94,20 @@ $( document ).ready(function() {
 		$('.categories_sidebar_tab .tab'+n).addClass('active');
 	}
 	
+	/* smooth scrolling */
+	$('a[href*="#"]').on('click', function(e) {
+		var topOffset = (-50);
+		e.preventDefault();
 	
-	initPlayer();
+		$('html, body').animate(
+		  {
+			scrollTop: $($(this).attr('href')).offset().top+topOffset,
+		  },
+		  500,
+		  'linear'
+		);
+	});
+
 	onResize();
 });
 
@@ -116,64 +119,8 @@ function categoriesSidebarClick(n){
 	$('.categories_sidebar_tab .tab'+n).addClass('active');
 }
 
-
-function onYouTubeIframeAPIReady(){
-	
-    if (document.readyState === 'complete') {
-        initPlayer();
-    } else {
-        window.addEventListener('load', initPlayer);
-    }
-}
-
-function initPlayer() {
-	if ( $('body').hasClass('is-home') ) {
-		player = new YT.Player('player', {
-			videoId: "wrN4GtXm4DY",
-			playerVars: {
-				autoplay: 0,
-				controls: 1,
-				rel: 0,
-				showinfo: 0,
-				origin: "https://www.youtube.com"
-			},
-			events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange,
-			}
-		});
-	}
-}
-
-function onPlayerReady(event) {
-	
-}
-  
-function onPlayerStateChange(event) {
-	if (event.data == YT.PlayerState.PLAYING) {
-		document.getElementById('player').style.display = 'block';
-	}
-}
-
 function onVideoListClick(id){
-	if (player) {
-		player.loadVideoById(id);
-	} else {
-		player = new YT.Player('player', {
-			videoId: id,
-			playerVars: {
-				autoplay: 0,
-				controls: 1,
-				rel: 0,
-				showinfo: 0,
-				origin: "https://expertstaffingnews.com"
-			},
-			events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
-			}
-		});
-	}
+	window.location.href = '?player='+id+'#player';
 }
 
 

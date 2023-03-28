@@ -1,6 +1,15 @@
 
 
-<div class="main_content">
+
+<!-- sidebar -->
+<?php if ( is_active_sidebar( 'content-headers' ) ) : ?>
+    <div class="sidebar_content_headers">
+        <?php dynamic_sidebar( 'content-headers' ); ?>
+    </div>
+<?php endif; ?>
+
+<!-- main content -->
+<div class="main_content <?php if ( is_active_sidebar( 'content-headers' ) ) {echo 'with_sidebar';} ?>">
     <div class="main_content_header">
         <h1><?php the_title(); ?></h1>
         <ul>
@@ -8,17 +17,13 @@
             <li><?php the_date(); ?></li>
             <li><?php echo get_comments_number(); ?></li>
         </ul>
-    </div>
-    <?php if ( is_active_sidebar( 'content-headers' ) ) : ?>
-        <div class="sidebar-content-headers">
-            <?php dynamic_sidebar( 'content-headers' ); ?>
-        </div>
-    <?php endif; ?>
+    </div>    
     <figure class="featured_img"><?php the_post_thumbnail(); ?></figure>
     <?php the_content(); ?>
     <div class="clearfix"></div>
 </div>
 
+<!-- conclusion -->
 <?php $conclusion = get_post_meta(get_the_ID(), 'conclusion', true); ?>
 <div id="conclusion">
     <?php if (!empty($conclusion)): ?>
@@ -41,5 +46,6 @@
     </div>
 </div>
 
+<!-- comment -->
 <?php comments_template(); ?>
 <div class="clearfix"></div>
